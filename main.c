@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 		printf("Select, what to do.\n(N) for new task, (A) for agenda, (E) to edit task properties, X to exit: ");
 		scanf("%c", &operator);
 		switch(operator){
-			case 'X':
+			case 'X'
 				started = 0;
 				break;
 			case 'N':
@@ -34,9 +34,9 @@ int main(int argc, char *argv[]){
 				char deadline[11];
 				short priority;
 				printf("Enter task name (80 symbols max): ");
-				scanf("%79[^\n]", &name);
+				scanf("%79s[^\n]", &name);
 				printf("Enter description (200 symbols max): ");
-				scanf("%199[^\n]", &desc);
+				scanf("%199s[^\n]", &desc);
 				printf("Enter task's priority (from 1 to 5): ");
 				scanf("%i", &priority);
 				if ((priority < 1) || (priority > 5)){
@@ -44,12 +44,23 @@ int main(int argc, char *argv[]){
 					break;
 				}
 				printf("Enter deadline in format DD-MM-YYYY and NODEADLINE if there is no deadline: ");
-				scanf("%10[^\n]", &deadline);
-				newtask(name, desc, deadline, priority, wr);
+				scanf("%10s[^\n]", &deadline);
+				task task = {name, desc, priority, deadline};
+				newtask(task, wr);
 				printf("Successfully written in file %s\n", argv[1]);
 				break;
 			case 'A':
-				// Do something here, I don't know what to do!
+				char name[80];
+				char desc[200];
+				char deadline[11];
+				short priority;
+				while(fscanf("%s\n%s\n%s\n%i\n", &name, &desc, &deadline, &priority, re)== 3){
+					task t = {name, desc, priority, deadline};
+					printf("Task name: %s\n", t.name);
+					printf("Description: %s\n", t.desc);
+					printf("Deadline: %s\n", t.deadline);
+					printf("Task priority: %i\n", t.prior);
+				}
 
 		}
 	}
