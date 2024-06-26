@@ -31,7 +31,9 @@ int main(int argc, char *argv[]){
 			case 'N':
 				char name[80];
 				char desc[200];
-				char deadline[11];
+				unsigned int day:4;
+				unsigned int month:3;
+				unsigned short year;
 				short priority;
 				printf("Enter task name (80 symbols max): ");
 				scanf("%79s[^\n]", &name);
@@ -43,8 +45,10 @@ int main(int argc, char *argv[]){
 					printf("Error! Priority is out of range 1-5\n");
 					break;
 				}
-				printf("Enter deadline in format DD-MM-YYYY and NODEADLINE if there is no deadline: ");
-				scanf("%10s[^\n]", &deadline);
+				printf("Enter deadline day:");
+				scanf("%i", &day);
+				printf("Enter deadline month: ");
+				scanf("%i", &)
 				task task = {name, desc, priority, deadline};
 				newtask(task, wr);
 				printf("Successfully written in file %s\n", argv[1]);
